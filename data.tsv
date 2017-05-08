@@ -1,9 +1,9 @@
-letter	frequency
-A	10
-B	50
-C	20
-D	80
-E	60
-F	5
-G	55
+letter	similarity
+A	0.1
+B	0.5
+C	0.2
+D	0.8
+E	0.6
+F	0.5
+G	0.55
 CVE-2014-0160	0
