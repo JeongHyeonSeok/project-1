@@ -20,8 +20,7 @@ body {
 }
 
 .bar {
-  fill: steelblue;
-  fill-opacity: .9;
+
 }
 
 .x.axis path {
@@ -46,7 +45,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
 var formatPercent = d3.format(".0%");
 
 var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1, 1);
+    .rangeRoundBands([0, width], .7, 1);
 
 var y = d3.scale.linear()
     .range([height, 0]);
@@ -88,11 +87,22 @@ d3.tsv("https://raw.githubusercontent.com/JeongHyeonSeok/project-1/master/data.t
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Frequency");
+      .text("Similarity");
 
   svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
+      .attr("fill", function(d) { 
+      	if (d.frequency > .5) {
+      		return "red";
+      	}
+      	else if (d.frequency > .1) {
+      		return "yellow";
+      	}
+      	else {
+      		return "green";
+      	}
+      	})
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.letter); })
       .attr("width", x.rangeBand())
